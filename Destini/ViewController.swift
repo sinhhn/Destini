@@ -33,45 +33,74 @@ class ViewController: UIViewController {
     @IBOutlet weak var topButton: UIButton! // Has TAG = 1
     @IBOutlet weak var bottomButton: UIButton! // Has TAG = 2
     @IBOutlet weak var storyTextView: UILabel!
-
+    @IBOutlet weak var restartButton: UIButton!
+    
     // TODO Step 5: Initialise instance variables here
     var storyInddex: Int = 1
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    fileprivate func restart() {
+        storyInddex = 1
+        restartButton.isHidden = true
+        topButton.isHidden = false
+        bottomButton.isHidden = false
         storyTextView.text = story1
         topButton.setTitle(answer1a, for: .normal)
         bottomButton.setTitle(answer1b, for: .normal)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        restart()
+    }
 
 
+    @IBAction func restartPressed(_ sender: Any) {
+        restart()
+    }
     // User presses one of the buttons
     @IBAction func buttonPressed(_ sender: UIButton) {
-        if sender.tag == 1 && storyInddex == 1 {
-            storyTextView.text = story3
-            topButton.setTitle(answer3a, for: .normal)
-            bottomButton.setTitle(answer3b, for: .normal)
-            storyInddex = 3
-        } else if sender.tag == 2 && storyInddex == 1 {
-            storyTextView.text = story2
-            topButton.setTitle(answer2a, for: .normal)
-            bottomButton.setTitle(answer2b, for: .normal)
-            storyInddex = 2
-        } else if sender.tag == 1 && storyInddex == 3 {
-            storyTextView.text = story6
-            topButton.isHidden = true
-            bottomButton.isHidden = true
-        } else if sender.tag == 1 && storyInddex == 2 {
-            storyTextView.text = story3
-            topButton.setTitle(answer3a, for: .normal)
-            bottomButton.setTitle(answer3b, for: .normal)
-            storyInddex = 3
-        } else if sender.tag == 2 && storyInddex == 2 {
-            storyTextView.text = story4
-            topButton.isHidden = true
-            bottomButton.isHidden = true
+        if storyInddex == 1 {
+            if sender.tag == 1 {
+                storyInddex = 3
+                storyTextView.text = story3
+                topButton.setTitle(answer3a, for: .normal)
+                bottomButton.setTitle(answer3b, for: .normal)
+            }
+            else if sender.tag == 2 {
+                storyInddex = 2
+                storyTextView.text = story2
+                topButton.setTitle(answer2a, for: .normal)
+                bottomButton.setTitle(answer2b, for: .normal)
+            }
+        } else if storyInddex == 2 {
+            if sender.tag == 1 {
+                storyInddex = 3
+                storyTextView.text = story3
+                topButton.setTitle(answer3a, for: .normal)
+                bottomButton.setTitle(answer3b, for: .normal)
+            } else if sender.tag == 2 {
+                storyInddex = 4
+                storyTextView.text = story4
+                topButton.isHidden = true
+                bottomButton.isHidden = true
+                restartButton.isHidden = false
+            }
+            
+        } else if storyInddex == 3 {
+            if sender.tag == 1 {
+                storyInddex = 6
+                storyTextView.text = story6
+                topButton.isHidden = true
+                bottomButton.isHidden = true
+                restartButton.isHidden = false
+            } else if sender.tag == 2 {
+                storyInddex = 5
+                storyTextView.text = story5
+                topButton.isHidden = true
+                bottomButton.isHidden = true
+                restartButton.isHidden = false
+            }
         }
-
     }
 
 
