@@ -65,8 +65,7 @@ class ViewController: UIViewController {
                 storyTextView.text = story3
                 topButton.setTitle(answer3a, for: .normal)
                 bottomButton.setTitle(answer3b, for: .normal)
-            }
-            else if sender.tag == 2 {
+            } else if sender.tag == 2 {
                 storyInddex = 2
                 storyTextView.text = story2
                 topButton.setTitle(answer2a, for: .normal)
@@ -102,7 +101,5 @@ class ViewController: UIViewController {
             }
         }
     }
-
-
 }
 
